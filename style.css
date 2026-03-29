@@ -130,6 +130,7 @@ p {
     margin-bottom: 1rem;
 }
 
+
 /* ========== 4. BOTÕES ========== */
 /* Estilo base para todos os botões */
 .btn {
@@ -196,6 +197,38 @@ p {
     z-index: 1000; /* Fica acima de todo conteúdo */
     padding: 15px 0;
 }
+/* ===== HEADER ===== MIGRADO DO OUTRO SITE */
+.header {
+    background: var(--secondary-color);
+    box-shadow: 0 2px 10px rgba(32, 1, 104, 0.1);
+    position: fixed;
+    width: 100%;  /*//lados fixos para o header ocupar toda a largura */
+    top: 0;
+    left: 0;
+    z-index: 1000; /*garante que o header fique acima de outros elementos*/
+}
+
+
+      .hero-background {
+          position: fixed;
+          top: 0;
+          z-index: -1;
+      }
+/*  ficou -1 o caixa video para fica rpara tras */
+      video {
+          
+          width: 100vw;
+          position: fixed;
+          top: 0;
+      }
+      .hero-overlay {
+          /*mascara do video */
+          height: 100%;
+          width: 100%;
+          background: linear-gradient(109deg, rgba(16, 29, 53, 0.99) 15%, rgba(10, 12, 16, 0.7) 50%, rgba(14, 26, 49, 0.99) 85%);
+          position: fixed;
+          top: 0;
+      }
 
 /* Container da navegação */
 .nav {
@@ -296,14 +329,14 @@ p {
 }
 
 /* EDITÁVEL: Overlay escuro sobre o background */
-.hero-overlay {
+/* .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.7) 100%);
-}
+} */
 
 /* Grid do hero - 2 colunas */
 .hero .container {
@@ -401,6 +434,32 @@ p {
     align-items: center;
     object-fit: cover;
     text-align: center;
+}
+
+/* Animação da logo */
+.logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            width: 110px;
+            /*  /// COMANDO PARA PULSAR A LOGO COM BRILHO */
+            animation: pulsar 1.5s infinite ease-in-out;
+}
+
+@keyframes pulsar {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px #2639e7);
+    }
+    50% {
+        transform: scale(1.20);
+        filter: drop-shadow(0 0 12px #275ae6);
+    }
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px #214ee2);
+    }
 }
 
 /* Animação de flutuação */
