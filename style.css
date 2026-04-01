@@ -99,7 +99,7 @@ ul {
 /* Título principal (Hero) */
 h1 {
     font-size: clamp(2rem, 5vw, 3.5rem); /* Tamanho responsivo */
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
 }
