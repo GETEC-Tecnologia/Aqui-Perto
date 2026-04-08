@@ -888,7 +888,7 @@ section {
 
 /* ========== 13. SEÇÃO FAQ ========== */
 .faq {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.185);
 }
 
 /* Lista de perguntas */
@@ -1048,6 +1048,12 @@ section {
     padding: 0;
 }
 
+.h2-site-externo {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
 /* ========== 15. FOOTER ========== */
 .footer {
     background: var(--accent);
@@ -1143,6 +1149,8 @@ section {
     font-size: 0.9rem;
     margin: 0;
 }
+
+
 
 /* ========== 16. RESPONSIVIDADE ========== */
 
