@@ -1,5 +1,5 @@
 /* =====================================================
-   STUDIO HAIR & BEAUTY - SALÃO DE BELEZA / BARBER SHOP
+   SITE AQUI PERTO
    Folha de Estilos Principal
    =====================================================
 
@@ -211,7 +211,7 @@ p {
           top: 0;
           z-index: -1;
       }
-/*  ficou -1 o caixa video para fica rpara tras */
+/*  ficou -1 o caixa video para fica para tras */
       video {
           
           width: 100vw;
@@ -1049,7 +1049,7 @@ section {
 }
 
 .h2-site-externo {
-    color: red;
+    color: yellow;
     text-align: center;
     margin-top: 20px;
 }
