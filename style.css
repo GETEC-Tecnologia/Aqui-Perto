@@ -67,7 +67,7 @@ html {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: var(--bg);
-    color: var(--text);
+    color: rgb(194, 8, 8);
     line-height: 1.6;
 }
 
@@ -126,7 +126,7 @@ h4 {
 
 /* Parágrafos */
 p {
-    color: var(--text-light);
+    color: white;
     margin-bottom: 1rem;
 }
 
@@ -250,7 +250,7 @@ p {
 /* Links do menu */
 .nav-menu a {
     font-weight: 500;
-    color: var(--text);
+    color: rgb(167, 23, 4)); /* Cor dos links */
     transition: var(--transition);
     position: relative;
 }
@@ -419,8 +419,8 @@ p {
     border-radius: 60%;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.5);
-    border: 5px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 60px rgba(236, 190, 37, 0.856);
+    border: 5px solid rgba(241, 191, 26, 0.74));
     animation: float 3s ease-in-out infinite;
 }
 
@@ -497,7 +497,7 @@ section {
 
 /* ========== 8. SEÇÃO SOBRE ========== */
 .sobre {
-    background: var(--white);
+    background: rgba(2, 2, 119, 0.199)
 }
 
 /* Grid da seção sobre */
@@ -561,8 +561,8 @@ section {
 /* ========== 9. GALERIA ========== */
 /* EDITÁVEL: Galeria de fotos */
 .galeria {
-    background: var(--bg);
-    padding: 100px 0;
+    background: rgba(255, 255, 255, 0.384);
+    padding: 80px 0;
 }
 
 .galeria-grid {
@@ -597,7 +597,7 @@ section {
 
 /* ========== 10. SEÇÃO SERVIÇOS ========== */
 .servicos {
-    background: var(--bg-alt);
+    background: rgba(255, 255, 255, 0.192);
 }
 
 /* Grid de cards de serviços */
@@ -609,7 +609,7 @@ section {
 
 /* Card de serviço individual */
 .servico-card {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.192);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: var(--transition);
@@ -669,7 +669,7 @@ section {
 
 /* ========== 11. SEÇÃO DESTAQUES ========== */
 .destaques {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.192);
 }
 
 /* Grid de destaques */
@@ -681,7 +681,7 @@ section {
 
 /* Card de destaque */
 .destaque-card {
-    background: var(--bg);
+    background: rgba(255, 255, 255, 0.192);
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -740,7 +740,7 @@ section {
 .destaque-badge {
     display: inline-block;
     background: var(--secondary);
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.192);
     padding: 5px 12px;
     border-radius: 50px;
     font-size: 0.8rem;
@@ -795,7 +795,7 @@ section {
 }
 
 .beneficio-card p {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.527);
     margin: 0;
     font-size: 0.95rem;
 }
