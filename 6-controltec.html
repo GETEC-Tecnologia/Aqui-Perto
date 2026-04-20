@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema PRO - Controle de Peças</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: #fff;
+            margin: 0
+        }
+
+        header {
+            background: #020617;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px
+        }
+
+        .container {
+            padding: 20px
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            border: none
+        }
+
+        input,
+        select {
+            width: 200px
+        }
+
+        button {
+            background: #22c55e;
+            color: #fff;
+            cursor: pointer
+        }
+
+        button:hover {
+            background: #16a34a
+        }
+
+        .table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #334155;
+            padding: 10px;
+            text-align: center
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 10px
+        }
+
+        .login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center
+        }
+
+        .hidden {
+            display: none
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="loginScreen" class="login">
+        <div class="card">
+            <h2>🔐 Login</h2>
+            <input type="text" id="user" placeholder="Usuário"><br>
+            <input type="password" id="pass" placeholder="Senha"><br>
+            <button onclick="login()">Entrar</button>
+        </div>
+    </div>
+
+    <div id="app" class="hidden">
+        <header>💻 Sistema PRO Controle de Peças</header>
+        <div class="container">
+
+            <div class="section">
+                <h3>👤 Clientes</h3>
+                <input id="clienteNome" placeholder="Nome">
+                <input id="clienteContato" placeholder="Contato">
+                <button onclick="addCliente()">Salvar</button>
+                <table class="table" id="clientes"></table>
+            </div>
+
+            <div class="section">
+                <h3>📦 Peças</h3>
+                <input id="pecaNome" placeholder="Nome">
+                <input id="pecaQtd" placeholder="Quantidade" type="number">
+                <button onclick="addPeca()">Salvar</button>
+                <table class="table" id="pecas"></table>
+            </div>
+
+            <div class="section">
+                <h3>🔄 Movimentação</h3>
+                <input id="movCliente" placeholder="Cliente">
+                <input id="movPeca" placeholder="Peça">
+                <select id="movTipo">
+                    <option>Entrada</option>
+                    <option>Saída</option>
+                </select>
+                <input id="movQtd" type="number" placeholder="Qtd">
+                <button onclick="movimentar()">Registrar</button>
+                <table class="table" id="movimentos"></table>
+            </div>
+
+            <div class="section">
+                <h3>📊 Relatório</h3>
+                <button onclick="exportar()">Exportar Dados</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+        let pecas = JSON.parse(localStorage.getItem('pecas')) || [];
+        let movimentos = JSON.parse(localStorage.getItem('movimentos')) || [];
+
+        function salvar() {
+            localStorage.setItem('clientes', JSON.stringify(clientes));
+            localStorage.setItem('pecas', JSON.stringify(pecas));
+            localStorage.setItem('movimentos', JSON.stringify(movimentos));
+            render();
+        }
+
+        function login() {
+            let u = document.getElementById('user').value;
+            let p = document.getElementById('pass').value;
+            if (u === 'admin' && p === '1234') {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('app').classList.remove('hidden');
+                render();
+            } else alert('Login inválido');
+        }
+
+        function addCliente() {
+            clientes.push({
+                nome: clienteNome.value,
+                contato: clienteContato.value
+            });
+            salvar();
+        }
+
+        function addPeca() {
+            pecas.push({
+                nome: pecaNome.value,
+                qtd: parseInt(pecaQtd.value)
+            });
+            salvar();
+        }
+
+        function movimentar() {
+            let p = pecas.find(x => x.nome === movPeca.value);
+            if (!p) return alert('Peça não encontrada');
+
+            let qtd = parseInt(movQtd.value);
+
+            if (movTipo.value === 'Saída') {
+                if (p.qtd < qtd) return alert('Estoque insuficiente');
+                p.qtd -= qtd;
+            } else {
+                p.qtd += qtd;
+            }
+
+            movimentos.push({
+                cliente: movCliente.value,
+                peca: movPeca.value,
+                tipo: movTipo.value,
+                qtd: qtd
+            });
+
+            salvar();
+        }
+
+        function render() {
+            clientesTable = document.getElementById('clientes');
+            clientesTable.innerHTML = '<tr><th>Nome</th><th>Contato</th></tr>';
+            clientes.forEach(c => {
+                clientesTable.innerHTML += `<tr><td>${c.nome}</td><td>${c.contato}</td></tr>`;
+            });
+
+            pecasTable = document.getElementById('pecas');
+            pecasTable.innerHTML = '<tr><th>Peça</th><th>Qtd</th></tr>';
+            pecas.forEach(p => {
+                pecasTable.innerHTML += `<tr><td>${p.nome}</td><td>${p.qtd}</td></tr>`;
+            });
+
+            movTable = document.getElementById('movimentos');
+            movTable.innerHTML = '<tr><th>Cliente</th><th>Peça</th><th>Tipo</th><th>Qtd</th></tr>';
+            movimentos.forEach(m => {
+                movTable.innerHTML += `<tr><td>${m.cliente}</td><td>${m.peca}</td><td>${m.tipo}</td><td>${m.qtd}</td></tr>`;
+            });
+        }
+
+        function exportar() {
+            let data = JSON.stringify({ clientes, pecas, movimentos }, null, 2);
+            let blob = new Blob([data], { type: 'application/json' });
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'dados.json';
+            a.click();
+        }
+    </script>
+
+</body>
+
+</html>
